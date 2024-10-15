@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AplicacionTp6.Views.MenuPage"
+             xmlns:viewModels="clr-namespace:AplicacionTp6.ViewModels"
+             x:DataType="viewModels:MenuViewModel"
+             Title="MenuPage"
+             BackgroundColor="#F5F5F5">
+
+    <VerticalStackLayout Margin="20" Spacing="20">
+
+
+        <Image Source="pngwingcom.png" HeightRequest="150" HorizontalOptions="Center" />
+
+       
+        <Label Text="Menú Principal" FontSize="32" FontAttributes="Bold" 
+               TextColor="#00796B" HorizontalOptions="Center" />
+
+        <Button Text="Usuario" 
+                FontSize="18"
+                BackgroundColor="#00796B"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                Command="{Binding GoToUsuarioListaCommand}" />
+
+        <Button Text="Producto" 
+                FontSize="18"
+                BackgroundColor="#00796B"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                Command="{Binding GoToProductoListaCommand}"/>
+
+        <Button Text="Carrito" 
+                FontSize="18"
+                BackgroundColor="#00796B"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                 />
+
+        <Button Text="Acerca de" 
+                FontSize="18"
+                BackgroundColor="#00796B"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                Command="{Binding GoToAcercaCommand}"/>
+
+        <Button Text="Cerrar sesión" 
+                FontSize="18"
+                BackgroundColor="#E53935"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                Command="{Binding ExitCommand}" />
+
+    </VerticalStackLayout>
+</ContentPage>

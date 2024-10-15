@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AplicacionTp6.Views.UsuarioListaPage"
+             xmlns:vm="clr-namespace:AplicacionTp6.ViewModels"
+             xmlns:model="clr-namespace:AplicacionTp6.Models"
+             x:DataType="vm:UsuarioListaViewModel"
+             Title="{Binding Title}" BackgroundColor="#F5F5F5">
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,Auto" RowSpacing="0">
+
+        <RefreshView Grid.ColumnSpan="2" Command="{Binding GetUsuariosCommand}" IsRefreshing="{Binding IsRefreshing}">
+
+            <CollectionView Grid.Row="1"
+                ItemsSource="{Binding Usuarios}"
+                SelectionMode="Single"
+                SelectedItem="{Binding UsuarioSeleccionado}"
+                SelectionChangedCommand="{Binding GoToDetailCommand}">
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="100">
+                        <Image Source="not_found.jpg" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Usuario">
+                        <Frame Margin="10"
+                               BackgroundColor="#E1F5FE"
+                            BorderColor="#00796B"
+                            
+                            CornerRadius="8"
+                            
+                            HasShadow="True">
+                            
+                            <Grid
+                                ColumnDefinitions="Auto,*,Auto"
+                                Margin="10"
+                                ColumnSpacing="10" 
+                                RowSpacing="10" 
+                                RowDefinitions="Auto">
+
+                                <Image Grid.Column="0"
+                                       Source="iconousuario.png"
+                                       WidthRequest="80"
+                                       HeightRequest="80"
+                                       Aspect="AspectFit"/>
+
+                                <Label Grid.Column="1" 
+                                       Text="{Binding username}"
+                                       TextColor="#00796B" 
+                                       VerticalOptions="Center" 
+                                       FontAttributes="Bold" 
+                                       HorizontalOptions="Start" 
+                                       Margin="5,0,0,0"/>
+
+                                <Label Grid.Column="2"
+                                       Text="{Binding idUsuario}"
+                                       TextColor="#00796B" 
+                                       VerticalOptions="Center" 
+                                       HorizontalOptions="End" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End" Margin="0,10">
+            <Button Text="Agregar Usuario"
+                    WidthRequest="200"
+                    HeightRequest="50"
+                    TextColor="White"
+                    Command="{Binding GoToCrearUsuarioCommand}"
+                    BackgroundColor="#00796B"
+                    HorizontalOptions="FillAndExpand"/>
+            <Button x:Name="BackBtn"
+                    Text="Volver al Menú Principal"                                      
+                    WidthRequest="200"
+                    HeightRequest="50"
+                    TextColor="White"
+                    BackgroundColor="#E53935"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="BackBtn_Clicked"
+                    Margin="10,0,0,0"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
